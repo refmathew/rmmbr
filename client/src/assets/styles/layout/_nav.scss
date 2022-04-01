@@ -1,0 +1,29 @@
+@use "../abstracts/variables.scss" as v;
+
+.nav{
+  width: 24.2rem;
+  min-height: 100vh;
+  padding: 3.2rem;
+  background-color: v.$p5;
+
+  &__logo{
+    margin-bottom: 6.4rem;
+  }
+
+  &__buttons-wrp{
+    &__notes-wrp{
+      overflow: hidden;
+
+      &__pages{
+        margin-bottom: 1.6rem;
+      }
+    }
+
+    &__todos-wrp{
+      overflow: hidden;
+
+      &__pages{
+      }
+    }
+  }
+}
