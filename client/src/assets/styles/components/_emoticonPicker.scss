@@ -1,0 +1,5 @@
+@use "../abstracts/variables.scss" as v;
+
+.emoji-mart{
+  transition: top 400ms v.$bezier;
+}

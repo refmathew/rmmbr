@@ -1,0 +1,38 @@
+@use "../abstracts/variables.scss" as v;
+
+.book-wrp{
+  &__book-button{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+    color: v.$s5;
+    transition: color 100ms v.$bezier;
+
+    &:hover > .page-button{
+      color: v.$s4;
+    }
+
+    &__icon{
+      font-size: 2.6rem;
+      margin-right: 1.6rem;
+    }
+
+    &__title{
+      font-size: 1.8rem;
+      letter-spacing: -2%;
+    }
+  }
+
+  &__page-wrp{
+    padding-left: 3.2rem;
+    opacity: 1;
+    transition: all 400ms v.$bezier;
+
+    &--hidden{
+      height: 0 !important;
+      margin: 0;
+      // opacity: 0;
+    }
+  }
+}
+
