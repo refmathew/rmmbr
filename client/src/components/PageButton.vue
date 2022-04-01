@@ -46,7 +46,7 @@ const route = useRoute()
 const router = useRouter()
 const splitter = new GraphemeSplitter()
 
-// =============================================================================
+// ]===========================================================================[
 
 // DEFINITIONS
 // Emits
@@ -65,7 +65,7 @@ const props = defineProps({
 const pageButtonEmoticon = ref(null)
 const pageButtonName = ref(null)
 
-// =============================================================================
+// ]===========================================================================[
 
 // STORE
 // State
@@ -95,7 +95,7 @@ const actions = useActions([
   'mutateContextMenuOffsets'
 ])
 
-// =============================================================================
+// ]===========================================================================[
 
 // FUNCTIONS
 const setPageNameUnderlineWidth = (route) => {
@@ -123,31 +123,29 @@ const renamePageName = () => {
   }
 }
 
-// =============================================================================
+const patch = async () => {
+  let data = await axios.patch(
+    `http://localhost:8000/api/pages/${props.page._id}`,
+    { emoticon: pageButtonEmoticon.value.innerText }
+  )
+}
+
+// ]===========================================================================[
 
 watch([state.emoticonPickerShown, state.focusedPageEmoticon, state.chosenPageEmoticon],
-  ([newEmoticonPickerShown, newFocusedPageEmoticon, newChosenPageEmoticon],
-    [previousEmoticonPickerShown, previousFocusedPageEmoticon, previousChosenPageEmoticon]) => {
+  ([newEmoticonPickerShown, newFocusedPageEmoticon, newChosenPageEmoticon],) => {
     if (newFocusedPageEmoticon === props.page.name) {
       if (state.chosenPageEmoticon.value != '') {
         pageButtonEmoticon.value.innerText = state.chosenPageEmoticon.value
       }
-
-      if (newEmoticonPickerShown === false && pageButtonEmoticon.value.innerText !== props.page.emoticon) {
-        const patch = async () => {
-          let data = await axios.patch(
-            `http://localhost:8000/api/pages/${props.page._id}`,
-            { emoticon: pageButtonEmoticon.value.innerText }
-          )
-        }
+      if (!newEmoticonPickerShown && pageButtonEmoticon.value.innerText !== props.page.emoticon) {
         patch()
       }
-
     }
   }
 )
 
-// =============================================================================
+// ]===========================================================================[
 
 // EMOTICON PICKER
 
@@ -239,7 +237,7 @@ const showEmoticonPicker = (event) => {
 
 }
 
-// =============================================================================
+// ]===========================================================================[
 
 // PAGE BUTTON NAME
 const clickEvent = (event) => {
@@ -276,7 +274,7 @@ const blurEvent = (e) => {
   // }
 }
 
-// =============================================================================
+// ]===========================================================================[
 
 onMounted(() => {
 
@@ -329,7 +327,7 @@ const contextmenuEvent = (e) => {
   })
 }
 
-// =============================================================================
+// ]===========================================================================[
 
 watch(
   route,

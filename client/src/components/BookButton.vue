@@ -20,7 +20,7 @@
     <div
       :class="[`nav__buttons-wrp__${book.name}s-wrp__pages`, 'book-wrp__page-wrp', { 'book-wrp__page-wrp--hidden': hidden }]"
     >
-      <template v-for="page in state.pages.value" :key="page">
+      <template v-for="page in pages" :key="page">
         <page-button v-if="page.book === book.name" :page="page"></page-button>
       </template>
     </div>
@@ -29,34 +29,21 @@
 
 
 <script setup>
-import { defineEmits, ref, watch, onMounted } from 'vue'
-import { useState, useGetters, useActions } from '../helpers/storeHelpers'
+import { defineEmits, ref, watch } from 'vue'
+import { useGetters } from '../helpers/storeHelpers'
 import PageButton from './PageButton.vue'
 
 // =======================================================================================
 
 // DEFINITIONS
 const props = defineProps({
-  book: Object
+  book: Object,
+  pages: Array,
 })
 
 const emits = defineEmits([
   'toggleBookVisibility'
 ])
-
-// =======================================================================================
-
-// STORE
-// States
-const state = useState([
-  'pages',
-])
-// Getters
-const getters = useGetters([
-  'firstNotePage',
-  'firstTodoPage'
-])
-// Actions
 
 // =======================================================================================
 
@@ -74,32 +61,12 @@ switch (props.book.name) {
     break
 }
 
-const setBookFirstPage = () => {
-  switch (props.book.name) {
-    case 'note':
-      watch(getters.firstNotePage, (newFirstNotePage) => {
-        firstBookPage = newFirstNotePage
-      })
-      break
-    case 'todo':
-      watch(getters.firstTodoPage, (newFirstTodoPage) => {
-        firstBookPage = newFirstTodoPage
-      });
-      break
-  }
-}
-
 // =======================================================================================
 
 let hidden = ref(false)
 const bookClickEvent = () => {
   toggleBookVisibilityFn(props.book.name)
 }
-
-// =======================================================================================
-
-let firstBookPage
-setBookFirstPage()
 
 // =======================================================================================
 
