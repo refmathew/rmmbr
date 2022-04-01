@@ -30,7 +30,6 @@
 
 <script setup>
 import { defineEmits, ref, watch } from 'vue'
-import { useGetters } from '../helpers/storeHelpers'
 import PageButton from './PageButton.vue'
 
 // =======================================================================================
@@ -48,7 +47,6 @@ const emits = defineEmits([
 // =======================================================================================
 
 // FUNCTIONS
-
 const toggleBookVisibilityFn = (book) => {
   hidden.value = !hidden.value
   return emits('toggleBookVisibility', book)
