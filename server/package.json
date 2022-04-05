@@ -1,9 +1,8 @@
 {
   "name": "mern_dev_starters",
   "version": "1.0.0",
-  "description": "Starter files for mern development",
   "scripts": {
-    "start": "nodemon server/app"
+    "start": "nodemon app"
   },
   "author": "",
   "license": "ISC",
