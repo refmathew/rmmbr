@@ -1,0 +1,89 @@
+@use "../abstracts/variables.scss" as v;
+
+.login{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 3.2rem;
+  background-color: v.$p5;
+
+  &__hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__logo{
+      width: 9.918rem;
+      margin-bottom: 3.2rem;
+
+      img{
+      }
+    }
+    &__heading{
+      margin-bottom: 6.4rem;
+        text-align: center;
+
+      &__text{
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 5rem;
+        font-weight: 900;
+        color: v.$s5;
+        line-height: 3.8rem;
+      }
+    }
+    &__subtitle{
+      display: none;
+    }
+    &__illustration{
+      display:none;
+    }
+  }
+
+  &__form{
+    color: v.$s5;
+
+    &__heading{
+      margin-bottom: 2.4rem;
+      font-family: "Source Sans Pro", sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+    }
+    &__main{
+      &__username{
+        &__label{
+        }
+        &__input{
+
+        }
+      }
+      &__password{
+        &__label{
+
+        }
+        &__input{
+
+        }
+      }
+      &__login-button{
+
+      }
+    }
+    &__footer{
+      &__forgot{
+
+        &__link{
+
+        }
+      }
+      &__register{
+        &__link{
+
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 40em){
+
+}
