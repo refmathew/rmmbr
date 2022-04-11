@@ -1,4 +1,4 @@
-@use 'functions' as f;
+@use './functions' as f;
 
 // clamp for any property
 @mixin c($property, $min, $max){
@@ -58,7 +58,6 @@
 @mixin cm4($top, $topMax, $right, $rightMax, $bot, $botMax, $left, $leftMax){
   margin: clamp(#{f.pxToRem($top)}rem, #{f.preferred($topMax)}vw, #{f.pxToRem($topMax)}rem) clamp(#{f.pxToRem($right)}rem, #{f.preferred($rightMax)}vw, #{f.pxToRem($rightMax)}rem) clamp(#{f.pxToRem($bot)}rem, #{f.preferred($botMax)}vw, #{f.pxToRem($botMax)}rem) clamp(#{f.pxToRem($left)}rem, #{f.preferred($leftMax)}vw, #{f.pxToRem($leftMax)}rem);
 }
-
 
 // Media queries
 @mixin for-size($size) { // sourced from https://itnext.io/writing-media-queries-with-sass-mixins-3ea591ea3ea4

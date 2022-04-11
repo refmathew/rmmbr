@@ -1,16 +1,33 @@
 @use "../abstracts/variables.scss" as v;
+@use "../abstracts/mixins.scss" as m;
 
 .login{
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  padding: 3.2rem;
+  height: 100%;
   background-color: v.$p5;
 
-  &__hero{
+  &__wrapper{
+    height: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  &__hero{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-color: v.$p5;
+
+    &__wrapper{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 65.6rem;
+      margin: 6.4rem 3.2rem 6.4rem 3.2rem;
+    }
 
     &__logo{
       width: 9.918rem;
@@ -20,12 +37,11 @@
       }
     }
     &__heading{
-      margin-bottom: 6.4rem;
-        text-align: center;
+      text-align: center;
 
       &__text{
         font-family: "Source Sans Pro", sans-serif;
-        font-size: 5rem;
+        @include m.cf(40, 50);
         font-weight: 900;
         color: v.$s5;
         line-height: 3.8rem;
@@ -40,50 +56,181 @@
   }
 
   &__form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: v.$p5;
     color: v.$s5;
+
+    &__wrapper{
+      width: 100%;
+      max-width: 44.5rem;
+      margin: 0 3.2rem 3.2rem 3.2rem;
+    }
 
     &__heading{
       margin-bottom: 2.4rem;
-      font-family: "Source Sans Pro", sans-serif;
-      font-size: 2.4rem;
-      font-weight: 900;
+
+      &__text{
+        font-family: "Source Sans Pro", sans-serif;
+        @include m.cf(24, 40);
+        font-weight: 900;
+      }
     }
+
     &__main{
+      margin-bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+
       &__username{
+    margin-bottom: .8rem;
+
         &__label{
         }
         &__input{
-
         }
       }
+
       &__password{
+        margin-bottom: 4rem;
+
         &__label{
-
         }
-        &__input{
 
+        &__input{
         }
       }
-      &__login-button{
 
+      &__login-button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5.8rem;
+        background-color: v.$a5;
+        border: .4rem solid v.$s5;
+        border-radius: 1.45rem;
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 2rem;
+        font-weight: 900;
+        color: v.$s5;
+        letter-spacing: .3rem;
       }
     }
     &__footer{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
       &__forgot{
+          margin-bottom: .4rem;
 
         &__link{
-
         }
       }
       &__register{
         &__link{
-
         }
       }
     }
   }
 }
 
-@media (min-width: 40em){
 
+@include m.for-size(tablet){
+  .login{
+    height: 100%;
+
+    &__wrapper{
+      flex-direction: row;
+    }
+
+    &__hero{
+      flex-grow: 1;
+      background-color: v.$s9;
+      min-height: 100vh;
+
+      &__wrapper{
+        margin: 6.4rem 6.4rem 6.4rem 6.4rem;
+      }
+      &__logo{
+        img{
+          content: url(../img/logo-alt.svg) !important;
+        }
+      }
+      &__heading{
+        margin-bottom: 1.5rem;
+
+        &__text{
+          color: v.$a5;
+          line-height: 4.8rem;
+
+          @media (max-width: 1369px){
+            font-size: 4rem;
+          }
+        }
+      }
+      &__subtitle{
+        max-width: 45.6rem;
+        margin-bottom: 6.4rem;
+        display: block;
+        font-family: "Source Code Pro", monospace;
+        text-align: center;
+
+        &__text{
+          font-size: 2rem;
+
+        }
+      }
+      &__illustration{
+        display: block;
+        img{
+        }
+      }
+    }
+
+    &__form{
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+
+
+      &__wrapper{
+        margin: 6.4rem 6.4rem 6.4rem 6.4rem;
+      }
+
+      &__heading{
+        text-align: center;
+
+        &__text{
+        }
+      }
+
+      &__main{
+
+      }
+
+      &__footer{
+        &__forgot{
+
+          &__link{
+          }
+        }
+        &__signup{
+          &__link{
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px){
+  .login__hero__subtitle__text{
+
+  }
 }

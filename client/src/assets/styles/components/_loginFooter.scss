@@ -1,0 +1,13 @@
+@use "../abstracts/variables" as v;
+
+.login-footer{
+  font-size: 1.6rem;
+  color: v.$a5;
+  text-align: center;
+
+  a{
+    text-decoration: underline;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+}

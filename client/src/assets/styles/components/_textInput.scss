@@ -1,0 +1,28 @@
+@use "../abstracts/variables.scss" as v;
+@use "../abstracts/mixins.scss" as m;
+
+.text-input{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__label{
+    margin-bottom: 1.2rem;
+    font-family: "Source Code Pro", monospace;
+    @include m.cf(16, 16);
+    font-weight: 400;
+  }
+
+  &__input{
+    width: 100%;
+    height: 5rem;
+    margin-bottom: .8rem;
+    padding: 0 1.6rem;
+    background-color: v.$p7;
+    border-radius: 1.25rem;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: v.$s5;
+  }
+}

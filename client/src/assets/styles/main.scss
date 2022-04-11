@@ -6,10 +6,12 @@
 @use "./base/fonts";
 
 @use "./pages/app";
-@use "./pages/_login.scss";
+@use "./pages/login";
 @use "./layout/main";
 @use "./layout/nav";
 
+@use "./components/textInput";
+@use "./components/loginFooter";
 @use "./components/bookButton";
 @use "./components/pageButton";
 @use "./components/pageButtonContextMenu";
