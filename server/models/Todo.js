@@ -16,6 +16,8 @@ const TodoSchema = new mongoose.Schema({
 	},
 	dateCreated: Date,
 	lastUpdated: Date
-}, { collection: 'todos' });
+}, {
+	collection: 'todos'
+});
 
 module.exports = mongoose.model('Todo', TodoSchema);
