@@ -1,31 +1,4 @@
-<template >
-  <div v-if="cookie.hasVisited">
-    <nav class="nav" @contextmenu.prevent>
-      <img class="nav__logo" src="./assets/img/logo-alt.svg" alt="Rmmbr logo" />
-
-      <div class="nav__buttons-wrp">
-        <book-button
-          v-for="book in books"
-          :key="book.name"
-          :book="book"
-          :pages="pages"
-          @toggle-book-visibility="toggleBookVisibility"
-        ></book-button>
-      </div>
-    </nav>
-
-    <main class="main" @contextmenu.prevent>
-      <router-view />
-    </main>
-  </div>
-
-  <emoticon-picker />
-  <page-button-context-menu />
-</template>
-
-
 <script setup >
-
 import { ref, watch, onBeforeMount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
@@ -36,6 +9,30 @@ import BookButton from '@/components/BookButton.vue'
 import EmoticonPicker from '@/components/EmoticonPicker.vue'
 import PageButtonContextMenu from '@/components/PageButtonContextMenu.vue'
 const router = useRouter()
+
+
+// LOGIN REDIRECTION
+const cookie = Object.fromEntries(document.cookie
+  .split('; ')
+  .map(entry => entry.split('='))
+)
+
+if (!cookie.hasVisited) {
+  router.push({
+    name: 'Login',
+  })
+} else {
+  watch(firstPage, (newFirstPage) => {
+    router.push({
+      name: 'Pages',
+      params: {
+        bookName: 'notes',
+        pageName: newFirstPage.note.name
+      }
+    })
+  }, { deep: true })
+}
+
 
 // ]===========================================================================[
 
@@ -75,28 +72,6 @@ onBeforeMount(() => {
   fetchPages()
 })
 
-const cookie = Object.fromEntries(document.cookie
-  .split('; ')
-  .map(entry => entry.split('='))
-)
-
-// Immediately redirect to the first note page onCreate
-if (!cookie.hasVisited) {
-  router.push({
-    name: 'Login',
-  })
-  console.log('no cookie yet')
-} else {
-  watch(firstPage, (newFirstPage) => {
-    router.push({
-      name: 'Pages',
-      params: {
-        bookName: 'notes',
-        pageName: newFirstPage.note.name
-      }
-    })
-  }, { deep: true })
-}
 
 // ]===========================================================================[
 
@@ -242,10 +217,12 @@ watch([recentlyFocusedBook, todosHidden, notesHidden, firstPage,],
 // ]===========================================================================[
 
 // PAGES
-watch(pages, (newPages) => {
-  firstPage.value.note = newPages.find(page => page.book === 'note')
-  firstPage.value.todo = newPages.find(page => page.book === 'todo')
-})
+if (pages.value) {
+  watch(pages, (newPages) => {
+    firstPage.value.note = newPages.find(page => page.book === 'note')
+    firstPage.value.todo = newPages.find(page => page.book === 'todo')
+  })
+}
 
 // ]===========================================================================[
 
@@ -267,3 +244,29 @@ document.addEventListener('click', (e) => {
 // ]===========================================================================[
 
 </script>
+
+
+<template >
+  <div v-if="cookie.hasVisited" v-cloak>
+    <nav class="nav" @contextmenu.prevent>
+      <img class="nav__logo" src="./assets/img/logo-alt.svg" alt="Rmmbr logo" />
+
+      <div class="nav__buttons-wrp">
+        <book-button
+          v-for="book in books"
+          :key="book.name"
+          :book="book"
+          :pages="pages"
+          @toggle-book-visibility="toggleBookVisibility"
+        ></book-button>
+      </div>
+    </nav>
+
+    <main class="main" @contextmenu.prevent>
+      <router-view />
+    </main>
+  </div>
+
+  <emoticon-picker />
+  <page-button-context-menu />
+</template>

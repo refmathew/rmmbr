@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://localhost:8000/api/pages'
+const url = `${import.meta.env.VITE_SERVER}/pages`
 
 class PageService {
   static async getPages() {
@@ -11,8 +11,5 @@ class PageService {
     }
   }
 
-  // static async updatePage() {
-
-  // }
 }
 export default PageService

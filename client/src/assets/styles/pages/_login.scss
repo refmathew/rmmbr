@@ -3,11 +3,11 @@
 
 .login{
   width: 100%;
+  min-width: 40.4rem;
   height: 100%;
   background-color: v.$p5;
 
   &__wrapper{
-    height: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -84,8 +84,8 @@
       display: flex;
       flex-direction: column;
 
-      &__username{
-    margin-bottom: .8rem;
+      &__email{
+        margin-bottom: .8rem;
 
         &__label{
         }
@@ -94,7 +94,7 @@
       }
 
       &__password{
-        margin-bottom: 4rem;
+        margin-bottom: 1.6rem;
 
         &__label{
         }
@@ -116,6 +116,10 @@
         font-weight: 900;
         color: v.$s5;
         letter-spacing: .3rem;
+
+        &--error{
+          animation: shake .8s v.$bezier both;
+        }
       }
     }
     &__footer{
@@ -229,8 +233,20 @@
   }
 }
 
-@media (min-width: 1200px){
-  .login__hero__subtitle__text{
+@keyframes shake {
+  10%, 90% {
+    transform: translateX(-1px);
+  }
 
+  20%, 80% {
+    transform: translateX(2px);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(-4px);
+  }
+
+  40%, 60% {
+    transform: translateX(4px);
   }
 }

@@ -1,48 +1,67 @@
-<template>
-  <div :class="[
-    'text-input',
-    `login__form__main__${labelNameClass}`
-  ]">
-    <label
-      :class="[
-        'text-input__label',
-        `login__form__main__${labelNameClass}__label`
-      ]"
-      for
-    >{{ labelName }}:</label>
-
-    <input
-      :class="[
-        'text-input__input',
-        `login__form__main__${labelNameClass}__input`
-      ]"
-      :type="inputType"
-      @input="inputEvt"
-    />
-  </div>
-</template>
-
 <script setup>
-import { defineEmits } from 'vue'
+import { onMounted, ref, defineEmits } from 'vue'
 
+
+// =========================
+// ]===   Definitions   ===[
+// =========================
+const props = defineProps({
+  name: String,
+  errorMsg: String
+})
 const emits = defineEmits([
-  'forwardInput',
+  'validationReady',
+  'validateInput'
 ])
 
-const props = defineProps({
-  labelName: String
-})
+// template refs
+const inputEl = ref(null)
 
-const labelNameClass = props.labelName.toLowerCase().replace(/ .*/, '')
-let inputType
-if (labelNameClass === "password") {
-  inputType = "password"
-} else {
-  inputType = "text"
+
+// ==============================
+// ]===   Input Validation   ===[
+// ==============================
+const inputValue = ref()
+const validateInput = () => {
+  return emits('validationReady', [props.name, inputValue.value])
 }
 
-const inputEvt = (e) => {
-  return emits('forwardInput', [labelNameClass, e.target.value])
+// after first blur, change the input listener from 'Blur' to 'onInput'
+const handleBlur = () => {
+  validateInput()
+
+  inputEl.value.addEventListener('input', () => {
+    validateInput()
+  })
 }
 
+
+// ]===========================================================================[
+// const clearInputField = () => {
+//   inputEl.value = ''
+// }
+// defineExpose({
+//   clearInputField
+// })
 </script>
+
+
+<template>
+  <div :class="[
+    'custom-input',
+    `login__form__main__${name}`
+  ]" ref="inputEl">
+    <input
+      :class="[
+        'custom-input__input',
+        `login__form__main__${name}__input`
+      ]"
+      :type="name"
+      :placeholder="name[0].toUpperCase() + name.slice(1)"
+      v-model="inputValue"
+      @blur.once="handleBlur"
+    />
+
+    <p :class="[`login__form__main__${name}__error`, 'custom-input__error']">{{ errorMsg }}</p>
+  </div>
+</template>
