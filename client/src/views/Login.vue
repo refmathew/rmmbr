@@ -1,3 +1,26 @@
+<script setup >
+import CustomForm from '../components/CustomForm.vue'
+import { watch, onMounted, reactive, ref } from 'vue'
+import UserService from '../services/UserService.js'
+
+
+// =============================================================================
+// ]===   Animations   ========================================================[
+// =============================================================================
+
+// Scroll into the form upon landing
+onMounted(() => {
+  window.addEventListener('load', () => {
+    document
+      .querySelector('.login__hero__logo')
+      .scrollIntoView({ alignToTop: true, behavior: 'smooth' })
+    window.removeEventListener('load', () => { })
+  })
+})
+
+</script>
+
+
 <template>
   <div class="login">
     <div class="login__wrapper">
@@ -46,24 +69,3 @@
     </div>
   </div>
 </template>
-
-
-<script setup >
-import CustomForm from '../components/CustomForm.vue'
-import { watch, onMounted, reactive, ref } from 'vue'
-import UserService from '../services/UserService.js'
-
-
-// ]===========================================================================[
-
-
-onMounted(() => {
-  window.addEventListener('load', () => {
-    document
-      .querySelector('.login__hero__logo')
-      .scrollIntoView({ alignToTop: true, behavior: 'smooth' })
-    window.removeEventListener('load', () => { })
-  })
-})
-
-</script>

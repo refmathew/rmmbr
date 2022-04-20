@@ -28,7 +28,7 @@ const inputFields = [
 // ]===   Login   =============================================================[
 // =============================================================================
 
-// }---   Validation   ----------------------------------------------{
+// }---   Validation   --------------------------------------------------------{
 const validations = {
   email: { required, email },
   password: { required },
@@ -62,7 +62,7 @@ const handleValidationReady = async (e) => {
   errorMsgs.value[name] = error[0].$message
 }
 
-// }---   Authentication   ------------------------------------------{
+// }---   Authentication   ----------------------------------------------------{
 const animateError = (element) => {
   element.classList.remove('login__form__main__login-button--error')
 
