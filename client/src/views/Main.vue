@@ -1,10 +1,8 @@
 <script setup >
 import { ref, watch, onBeforeMount } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import axios from 'axios'
-import { useState, useGetters, useActions } from '../helpers/storeHelpers.js'
+import { useRouter } from 'vue-router'
+import { useState, useActions } from '../helpers/storeHelpers.js'
 import PageService from '../services/PageService.js'
-import NoteService from '../services/NoteService'
 import BookButton from '@/components/BookButton.vue'
 import EmoticonPicker from '@/components/EmoticonPicker.vue'
 import PageButtonContextMenu from '@/components/PageButtonContextMenu.vue'
