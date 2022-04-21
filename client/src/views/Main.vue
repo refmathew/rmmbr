@@ -249,7 +249,7 @@ document.addEventListener('click', (e) => {
 <template >
   <div v-if="cookie.hasVisited" v-cloak>
     <nav class="nav" @contextmenu.prevent>
-      <img class="nav__logo" src="./assets/img/logo-alt.svg" alt="Rmmbr logo" />
+      <img class="nav__logo" src="../assets/img/logo-alt.svg" alt="Rmmbr logo" />
 
       <div class="nav__buttons-wrp">
         <book-button
