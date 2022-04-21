@@ -17,7 +17,6 @@ onMounted(() => {
     window.removeEventListener('load', () => { })
   })
 })
-
 </script>
 
 
@@ -49,19 +48,9 @@ onMounted(() => {
           </div>
           <custom-form></custom-form>
           <div class="login__form__footer">
-            <div class="login-footer login__form__footer__forgot">
-              Forgot Password?
-              <a
-                href
-                class="login-footer__link login__form__footer__forgot__link"
-              >Reset</a>
-            </div>
-            <div class="login-footer login__form__footer__signup">
-              Don't have an account?
-              <a
-                href
-                class="login-footer__link login__form__footer__signup__link"
-              >Sign up</a>
+            <div class="login-footer">
+              Wanna see what's inside?
+              <a href class="login-footer__link">View</a>
             </div>
           </div>
         </div>
